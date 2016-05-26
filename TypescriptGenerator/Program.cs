@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.Runtime.Serialization.Json;
 using Newtonsoft.Json;
 using TypescriptGenerator.Utils;
 using TypescriptGenerator.Writers;
@@ -15,7 +14,6 @@ namespace TypescriptGenerator
         static void Main(string[] args)
         {
             AppDomain.CurrentDomain.AssemblyResolve += CurrentDomain_ReflectionOnlyAssemblyResolve;
-            var serializer = new DataContractJsonSerializer(typeof (Options));
 
             var fileName = "typescript.generator.json";
             if (args.Length == 1)

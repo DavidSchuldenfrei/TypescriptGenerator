@@ -10,7 +10,7 @@ namespace TypescriptGenerator.Utils
     {
         public static string GetTsTypeName(Type type, Dictionary<string, string> knownTypesModule, bool forceSuccess)
         {
-            if (type == typeof(string))
+            if (type == typeof(string) || IsEnum(type))
                 return "string";
             if (type == typeof(int) || type == typeof(int?) ||
                 type == typeof(long) || type == typeof(long?) ||
@@ -76,9 +76,9 @@ namespace TypescriptGenerator.Utils
         public static IEnumerable<Type> GetUsedTypes(Type type)
         {
             List<Type> result = new List<Type>();
-            if (type == typeof (string))
+            if (type == typeof (string) || IsEnum(type))
             {
-                result.Add(type);
+                result.Add(typeof(string));
                 return result;
             }
             if (typeof (IEnumerable).IsAssignableFrom(type))
@@ -106,6 +106,16 @@ namespace TypescriptGenerator.Utils
 
         public static string GetFullName(this Type type) => type.Namespace + "." + type.Name;
 
+        private static bool IsEnum(Type type)
+        {
+            if (type.IsEnum)
+                return true;
+            if (!type.IsGenericType)
+                return false;
+            if (type.GetGenericTypeDefinition() == typeof (Nullable<>))
+                return type.GetGenericArguments()[0].IsEnum;
+            return false;
+        }
         private static bool IsKnown(Type type, Dictionary<string, string> knownTypesModule)
         {
             if (type == typeof(string) ||

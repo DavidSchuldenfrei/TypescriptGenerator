@@ -13,7 +13,6 @@ namespace TypescriptGenerator.Writers
             string output)
         {
             var writer = new CodeWriter();
-
             var usedTypes = GetUsedClasses(type).ToList();
             UsedTypesWriter.Write(writer, usedTypes, knownTypesModule, module);
 
