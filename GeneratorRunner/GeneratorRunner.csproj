@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{582C4C85-F474-4806-8027-0E3F14F4FAE6}</ProjectGuid>
+    <ProjectGuid>{C0DA861D-BD39-4AAE-BCFE-54EE7345AA4D}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TypescriptGenerator</RootNamespace>
-    <AssemblyName>TypescriptGenerator</AssemblyName>
+    <RootNamespace>GeneratorRunner</RootNamespace>
+    <AssemblyName>GeneratorRunner</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -37,26 +37,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+    <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.8.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Web.Http.WebHost, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -65,35 +50,65 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="JsFramework.cs" />
-    <Compile Include="Model\ControllerModel.cs" />
-    <Compile Include="Model\HttpMethod.cs" />
-    <Compile Include="Model\MethodModel.cs" />
-    <Compile Include="Model\ParameterModel.cs" />
-    <Compile Include="Model\WebModel.cs" />
+    <Compile Include="BaseTextTemplate.cs">
+      <DependentUpon>BaseTextTemplate.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="ControllerTextWriter.cs" />
+    <Compile Include="ModelTemplate.cs">
+      <DependentUpon>ModelTemplate.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="ModelTextWriter.cs" />
+    <Compile Include="Ng1ControllerTemplate.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Ng1ControllerTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Ng2ControllerTemplate.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Ng2ControllerTemplate.tt</DependentUpon>
+    </Compile>
     <Compile Include="Options.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Utils\AssemblyUtils.cs" />
-    <Compile Include="Utils\CodeWriter.cs" />
-    <Compile Include="Utils\TsNames.cs" />
-    <Compile Include="Utils\TypeUtils.cs" />
-    <Compile Include="Writers\ServiceWriter\Angular1ControllerWriter.cs" />
-    <Compile Include="Writers\ServiceWriter\Angular2ControllerWriter.cs" />
-    <Compile Include="Writers\AssemblyWriter.cs" />
-    <Compile Include="Writers\ServiceWriter\BaseControllerWriter.cs" />
-    <Compile Include="Writers\ServiceWriter\EmptyControllerWriter.cs" />
-    <Compile Include="Writers\TypeWriter.cs" />
-    <Compile Include="Writers\UsedTypesWriter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="packages.config" />
     <None Include="typescript.generator.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\TypescriptModel\TypescriptModel.csproj">
+      <Project>{9F5A066F-FD76-4CFC-9464-D886CDD46DF2}</Project>
+      <Name>TypescriptModel</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="BaseTextTemplate.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>BaseTextTemplate.cs</LastGenOutput>
+    </Content>
+    <Content Include="ModelTemplate.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>ModelTemplate.cs</LastGenOutput>
+    </Content>
+    <Content Include="Ng1ControllerTemplate.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>Ng1ControllerTemplate.cs</LastGenOutput>
+    </Content>
+    <Content Include="Ng2ControllerTemplate.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>Ng2ControllerTemplate.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

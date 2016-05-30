@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TypescriptGenerator", "TypescriptGenerator\TypescriptGenerator.csproj", "{582C4C85-F474-4806-8027-0E3F14F4FAE6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TypescriptModel", "TypescriptModel\TypescriptModel.csproj", "{9F5A066F-FD76-4CFC-9464-D886CDD46DF2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeneratorRunner", "GeneratorRunner\GeneratorRunner.csproj", "{C0DA861D-BD39-4AAE-BCFE-54EE7345AA4D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,21 +13,28 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{582C4C85-F474-4806-8027-0E3F14F4FAE6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{582C4C85-F474-4806-8027-0E3F14F4FAE6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{582C4C85-F474-4806-8027-0E3F14F4FAE6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{582C4C85-F474-4806-8027-0E3F14F4FAE6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9F5A066F-FD76-4CFC-9464-D886CDD46DF2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9F5A066F-FD76-4CFC-9464-D886CDD46DF2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9F5A066F-FD76-4CFC-9464-D886CDD46DF2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9F5A066F-FD76-4CFC-9464-D886CDD46DF2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C0DA861D-BD39-4AAE-BCFE-54EE7345AA4D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C0DA861D-BD39-4AAE-BCFE-54EE7345AA4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C0DA861D-BD39-4AAE-BCFE-54EE7345AA4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C0DA861D-BD39-4AAE-BCFE-54EE7345AA4D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 2
+		SccNumberOfProjects = 3
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = http://srvcredfi01:8080/tfs/development
-		SccLocalPath0 = .
-		SccProjectUniqueName1 = TypescriptGenerator\\TypescriptGenerator.csproj
-		SccProjectName1 = TypescriptGenerator
-		SccLocalPath1 = TypescriptGenerator
+		SccProjectUniqueName0 = GeneratorRunner\\GeneratorRunner.csproj
+		SccProjectName0 = GeneratorRunner
+		SccLocalPath0 = GeneratorRunner
+		SccProjectUniqueName1 = TypescriptModel\\TypescriptModel.csproj
+		SccProjectName1 = TypescriptModel
+		SccLocalPath1 = TypescriptModel
+		SccLocalPath2 = .
 	EndGlobalSection
 EndGlobal

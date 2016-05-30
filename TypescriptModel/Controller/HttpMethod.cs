@@ -1,4 +1,4 @@
-﻿namespace TypescriptGenerator.Model
+﻿namespace TypescriptModel.Controller
 {
     public enum HttpMethod
     {

@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("TypescriptGenerator")]
+[assembly: AssemblyTitle("TypescriptModel")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("TypescriptGenerator")]
+[assembly: AssemblyProduct("TypescriptModel")]
 [assembly: AssemblyCopyright("Copyright ©  2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("582c4c85-f474-4806-8027-0e3f14f4fae6")]
+[assembly: Guid("9f5a066f-fd76-4cfc-9464-d886cdd46df2")]
 
 // Version information for an assembly consists of the following four values:
 //

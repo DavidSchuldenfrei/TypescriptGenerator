@@ -1,23 +1,28 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Web.Http;
+using TypescriptModel.Common;
 
-namespace TypescriptGenerator.Model
+namespace TypescriptModel.Controller
 {
     public class ParameterModel
     {
-        public string Name { get; }
-        public Type Type { get; }
-        public ParameterType ParameterType { get; }
-        public bool IsComplex { get; }
-        public ParameterModel(MethodModel methodModel, ParameterInfo parameterInfo)
+        public ParameterModel(MethodModel methodModel, ParameterInfo parameterInfo, Dictionary<string, string> knownTypesModule)
         {
             Name = parameterInfo.Name;
             Type = parameterInfo.ParameterType;
-            IsComplex = Type.IsClass && !(Type == typeof (string));
+            IsComplex = Type.IsClass && !(Type == typeof(string));
             ParameterType = GetParameterType(methodModel, parameterInfo);
+            TsType = TypeUtils.GetTsTypeName(Type, knownTypesModule, false);
         }
+
+        public Type Type { get; }
+        public string TsType { get; }
+        public string Name { get; }
+        public ParameterType ParameterType { get; }
+        public bool IsComplex { get; }
 
         private ParameterType GetParameterType(MethodModel methodModel, ParameterInfo parameterInfo)
         {
@@ -30,10 +35,6 @@ namespace TypescriptGenerator.Model
                 return ParameterType.QueryString;
             return IsComplex ? ParameterType.Body : ParameterType.QueryString;
         }
-    }
 
-    public enum ParameterType
-    {
-        Route, QueryString, Body
     }
 }

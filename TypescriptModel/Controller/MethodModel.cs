@@ -4,37 +4,41 @@ using System.Linq;
 using System.Net.Http;
 using System.Reflection;
 using System.Web.Http;
-using TypescriptGenerator.Utils;
+using TypescriptModel.Common;
 
-namespace TypescriptGenerator.Model
+namespace TypescriptModel.Controller
 {
     public class MethodModel
     {
-        public string Name { get; }
-        public Type ReturnType { get; }
-        public string Route { get; }
-        public HttpMethod HttpMethod { get; }
-        public List<ParameterModel> Parameters { get; }
-
-        public bool NeedsBody
-            => HttpMethod == HttpMethod.Patch || HttpMethod == HttpMethod.Post || HttpMethod == HttpMethod.Put;
-        public MethodModel(MethodInfo methodInfo, string controllerRoutePrefix)
+        public MethodModel(MethodInfo methodInfo, string controllerRoutePrefix, Dictionary<string, string> knownTypesModule)
         {
             Name = methodInfo.Name;
             ReturnType = GetReturnType(methodInfo);
             Route = GetRoute(methodInfo, controllerRoutePrefix);
             HttpMethod = GetMethod(methodInfo);
             Parameters = methodInfo.GetParameters()
-                .Select(p => new ParameterModel(this, p))
+                .Select(parameterInfo => new ParameterModel(this, parameterInfo, knownTypesModule))
                 .ToList();
+            if (ReturnType != null)
+                TsReturnType = TypeUtils.GetTsTypeName(ReturnType, knownTypesModule, false);
         }
+
+        public string Name { get; }
+        public Type ReturnType { get; }
+        public string TsReturnType { get; }
+        public string Route { get; }
+        public HttpMethod HttpMethod { get; }
+        public List<ParameterModel> Parameters { get; }
+
+        public bool NeedsBody
+            => HttpMethod == HttpMethod.Patch || HttpMethod == HttpMethod.Post || HttpMethod == HttpMethod.Put;
 
         private Type GetReturnType(MethodInfo methodInfo)
         {
-            if (methodInfo.ReturnType == typeof (void))
+            if (methodInfo.ReturnType == typeof(void))
                 return null;
-            if (typeof (IHttpActionResult).IsAssignableFrom(methodInfo.ReturnType) ||
-                typeof (HttpResponseMessage).IsAssignableFrom(methodInfo.ReturnType))
+            if (typeof(IHttpActionResult).IsAssignableFrom(methodInfo.ReturnType) ||
+                typeof(HttpResponseMessage).IsAssignableFrom(methodInfo.ReturnType))
                 return null;
             return methodInfo.ReturnType;
         }
@@ -79,14 +83,6 @@ namespace TypescriptGenerator.Model
             if (name.StartsWith("delete"))
                 return HttpMethod.Delete;
             return HttpMethod.Get;
-        }
-
-        public IEnumerable<Type> GetUsedClasses()
-        {
-            var result = Parameters.SelectMany(p => TypeUtils.GetUsedTypes(p.Type)).ToList();
-            if (ReturnType != null)
-                result.AddRange(TypeUtils.GetUsedTypes(ReturnType));
-            return result;
         }
     }
 }

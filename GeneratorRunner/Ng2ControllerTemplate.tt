@@ -1,0 +1,83 @@
+﻿<#@ template language="C#" inherits="ControllerTextWriter" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="TypescriptModel.Controller" #>
+import {Injectable} from '@angular/core';
+import {Http, Headers, RequestOptions} from '@angular/http';
+import 'rxjs/add/operator/map';
+import {Observable} from 'rxjs/Observable';
+
+<# foreach (var usedClass in Model.UsedClasses) { #>
+import {<#= usedClass.Name #>} from "<#= usedClass.GetRelativePath(Model.Module) #><#= usedClass.FileName #>";
+<# } #>
+<# if (Model.UsedClasses.Any()) {#>
+
+<# } #>
+declare var Global;
+
+@Injectable()
+export class <#= Model.Name.Replace("Controller", "Service")#> {
+    constructor(private _http: Http) {
+    }
+    urlBuilder = {
+<# foreach (var method in Model.Methods) {#>
+        <#= GetMethodName(method) #>(<#=BuildParams(method) #>) {
+            var url = <#= FixRouteParameters(method.Route)#>;
+            var params = '';
+<# foreach (var p in method.Parameters.Where(prm => prm.ParameterType == ParameterType.QueryString)) {#>
+            params = params + <#= GetUrlAdjust(p) #>
+<# } #>
+            return this._getUrl(url, params);
+        },
+<# } #>
+
+        _domain: Global.host + Global.<#= Model.Module #>,
+        _addParam(p: any) {
+            var result = '';
+            if (p) {
+                for (var propertyName in p) {
+                    if (p[propertyName] && !(p[propertyName] instanceof Function) && ((p[propertyName] != ''))) {
+                        result = result + propertyName + '=' + this._encode(p[propertyName]) + '&';
+                    }
+                }
+            }
+            return result;
+        },
+        _encode(p: any) {
+            if (p instanceof Date)
+                return p.getYears() + '-' + p.getMonths() + '-' + p.getDays();
+            else
+                return encodeURIComponent(p);
+        },
+        _getUrl(baseUrl: string, params: string) {
+            var result = this._domain + '/' + baseUrl
+            if (params.length > 0) {
+                result = result + '?' + params.slice(0, -1);
+            }
+            return result;
+        }
+    }
+<# foreach (var method in Model.Methods) {#>
+    <#= GetMethodName(method) #>(<#=BuildParams(method) #>)<# if(method.ReturnType != null) Write($": Observable<{method.TsReturnType}>"); #> {
+        var url = this.urlBuilder.<#= GetMethodName(method) #>(<#= BuildCallParams(method) #>);
+        return this._http.<#= method.HttpMethod.ToString().ToLower() #>(url, <# 
+if (method.NeedsBody)
+{
+	var postParam = method.Parameters.FirstOrDefault(p => p.ParameterType == ParameterType.Body);
+    if (postParam != null)
+		Write($"JSON.stringify({postParam.Name}), ");
+	else 
+		Write("'', ");
+}
+		#>this._buildOptions())<# if (method.ReturnType != null) {#>
+
+            .map(res => res.json())<# } #>;
+    }
+<# } #>
+    private _buildOptions() {
+        let headers = new Headers({ 'Content-Type': 'application/json; charset=utf-8' });
+        return new RequestOptions({headers: headers});
+    }
+}

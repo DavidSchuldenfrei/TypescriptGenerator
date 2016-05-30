@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace TypescriptGenerator.Utils
+namespace TypescriptModel.Common
 {
     internal static class TypeUtils
     {
@@ -76,12 +76,12 @@ namespace TypescriptGenerator.Utils
         public static IEnumerable<Type> GetUsedTypes(Type type)
         {
             List<Type> result = new List<Type>();
-            if (type == typeof (string) || IsEnum(type))
+            if (type == typeof(string) || IsEnum(type))
             {
                 result.Add(typeof(string));
                 return result;
             }
-            if (typeof (IEnumerable).IsAssignableFrom(type))
+            if (typeof(IEnumerable).IsAssignableFrom(type))
             {
                 foreach (var intfc in type.GetInterfaces())
                 {
@@ -112,7 +112,7 @@ namespace TypescriptGenerator.Utils
                 return true;
             if (!type.IsGenericType)
                 return false;
-            if (type.GetGenericTypeDefinition() == typeof (Nullable<>))
+            if (type.GetGenericTypeDefinition() == typeof(Nullable<>))
                 return type.GetGenericArguments()[0].IsEnum;
             return false;
         }
