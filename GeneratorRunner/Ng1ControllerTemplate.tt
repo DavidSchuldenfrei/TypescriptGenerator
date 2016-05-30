@@ -1,8 +1,5 @@
 ﻿<#@ template language="C#" inherits="ControllerTextWriter" #>
-<#@ assembly name="System.Core" #>
 <#@ import namespace="System.Linq" #>
-<#@ import namespace="System.Text" #>
-<#@ import namespace="System.Collections.Generic" #>
 <#@ import namespace="TypescriptModel.Controller" #>
 <# foreach (var usedClass in Model.UsedClasses) { #>
 import {<#= usedClass.Name #>} from "<#= usedClass.GetRelativePath(Model.Module) #><#= usedClass.FileName #>";
@@ -62,12 +59,9 @@ export class <#= Model.Name.Replace("Controller", "Api")#> {
 if (method.NeedsBody)
 {
     var postParam = method.Parameters.FirstOrDefault(p => p.ParameterType == ParameterType.Body);
-    if (postParam != null)
-		Write($", {postParam.Name}");
-	else 
-		Write(", ''");
+    Write(postParam != null ? $", {postParam.Name}" : ", ''");
 }
-		#>)
+        #>)
             .success(function(data) {
                 return defer.resolve();
         });

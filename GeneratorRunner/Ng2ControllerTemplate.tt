@@ -1,8 +1,5 @@
 ﻿<#@ template language="C#" inherits="ControllerTextWriter" #>
-<#@ assembly name="System.Core" #>
 <#@ import namespace="System.Linq" #>
-<#@ import namespace="System.Text" #>
-<#@ import namespace="System.Collections.Generic" #>
 <#@ import namespace="TypescriptModel.Controller" #>
 import {Injectable} from '@angular/core';
 import {Http, Headers, RequestOptions} from '@angular/http';
@@ -65,14 +62,10 @@ export class <#= Model.Name.Replace("Controller", "Service")#> {
         return this._http.<#= method.HttpMethod.ToString().ToLower() #>(url, <# 
 if (method.NeedsBody)
 {
-	var postParam = method.Parameters.FirstOrDefault(p => p.ParameterType == ParameterType.Body);
-    if (postParam != null)
-		Write($"JSON.stringify({postParam.Name}), ");
-	else 
-		Write("'', ");
+    var postParam = method.Parameters.FirstOrDefault(p => p.ParameterType == ParameterType.Body);
+    Write(postParam != null ? $"JSON.stringify({postParam.Name}), " : "'', ");
 }
-		#>this._buildOptions())<# if (method.ReturnType != null) {#>
-
+        #>this._buildOptions())<# if (method.ReturnType != null) {#>
             .map(res => res.json())<# } #>;
     }
 <# } #>

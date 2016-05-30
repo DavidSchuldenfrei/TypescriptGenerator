@@ -10,8 +10,6 @@
 namespace GeneratorRunner
 {
     using System.Linq;
-    using System.Text;
-    using System.Collections.Generic;
     using TypescriptModel.Controller;
     using System;
     
@@ -30,54 +28,54 @@ namespace GeneratorRunner
         public override string TransformText()
         {
             
-            #line 7 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\Ng1ControllerTemplate.tt"
+            #line 4 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\Ng1ControllerTemplate.tt"
  foreach (var usedClass in Model.UsedClasses) { 
             
             #line default
             #line hidden
             this.Write("import {");
             
-            #line 8 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\Ng1ControllerTemplate.tt"
+            #line 5 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\Ng1ControllerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(usedClass.Name));
             
             #line default
             #line hidden
             this.Write("} from \"");
             
-            #line 8 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\Ng1ControllerTemplate.tt"
+            #line 5 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\Ng1ControllerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(usedClass.GetRelativePath(Model.Module)));
             
             #line default
             #line hidden
             
-            #line 8 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\Ng1ControllerTemplate.tt"
+            #line 5 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\Ng1ControllerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(usedClass.FileName));
             
             #line default
             #line hidden
             this.Write("\";\r\n");
             
-            #line 9 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\Ng1ControllerTemplate.tt"
+            #line 6 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\Ng1ControllerTemplate.tt"
  } 
             
             #line default
             #line hidden
             
-            #line 10 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\Ng1ControllerTemplate.tt"
+            #line 7 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\Ng1ControllerTemplate.tt"
  if (Model.UsedClasses.Any()) {
             
             #line default
             #line hidden
             this.Write("\r\n");
             
-            #line 12 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\Ng1ControllerTemplate.tt"
+            #line 9 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\Ng1ControllerTemplate.tt"
  } 
             
             #line default
             #line hidden
             this.Write("declare var Global;\r\n\r\nexport class ");
             
-            #line 15 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\Ng1ControllerTemplate.tt"
+            #line 12 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\Ng1ControllerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Model.Name.Replace("Controller", "Api")));
             
             #line default
@@ -85,63 +83,63 @@ namespace GeneratorRunner
             this.Write(" {\r\n    static $inject = [\'$http\', \'$q\'];\r\n    constructor(private $http: ng.IHtt" +
                     "pService, private $q: ng.IQService) {\r\n    }\r\n    urlBuilder = {\r\n");
             
-            #line 20 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\Ng1ControllerTemplate.tt"
+            #line 17 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\Ng1ControllerTemplate.tt"
  foreach (var method in Model.Methods) {
             
             #line default
             #line hidden
             this.Write("        ");
             
-            #line 21 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\Ng1ControllerTemplate.tt"
+            #line 18 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\Ng1ControllerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(GetMethodName(method)));
             
             #line default
             #line hidden
             this.Write("(");
             
-            #line 21 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\Ng1ControllerTemplate.tt"
+            #line 18 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\Ng1ControllerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(BuildParams(method)));
             
             #line default
             #line hidden
             this.Write(") {\r\n            var url = ");
             
-            #line 22 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\Ng1ControllerTemplate.tt"
+            #line 19 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\Ng1ControllerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(FixRouteParameters(method.Route)));
             
             #line default
             #line hidden
             this.Write(";\r\n            var params = \'\';\r\n");
             
-            #line 24 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\Ng1ControllerTemplate.tt"
+            #line 21 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\Ng1ControllerTemplate.tt"
  foreach (var p in method.Parameters.Where(prm => prm.ParameterType == ParameterType.QueryString)) {
             
             #line default
             #line hidden
             this.Write("            params = params + ");
             
-            #line 25 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\Ng1ControllerTemplate.tt"
+            #line 22 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\Ng1ControllerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(GetUrlAdjust(p)));
             
             #line default
             #line hidden
             this.Write("\r\n");
             
-            #line 26 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\Ng1ControllerTemplate.tt"
+            #line 23 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\Ng1ControllerTemplate.tt"
  } 
             
             #line default
             #line hidden
             this.Write("            return this._getUrl(url, params);\r\n        },\r\n");
             
-            #line 29 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\Ng1ControllerTemplate.tt"
+            #line 26 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\Ng1ControllerTemplate.tt"
  } 
             
             #line default
             #line hidden
             this.Write("\r\n        _domain: Global.host + Global.");
             
-            #line 31 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\Ng1ControllerTemplate.tt"
+            #line 28 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\Ng1ControllerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Model.Module));
             
             #line default
@@ -174,73 +172,70 @@ namespace GeneratorRunner
     }
 ");
             
-            #line 57 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\Ng1ControllerTemplate.tt"
+            #line 54 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\Ng1ControllerTemplate.tt"
  foreach (var method in Model.Methods) {
             
             #line default
             #line hidden
             this.Write("    ");
             
-            #line 58 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\Ng1ControllerTemplate.tt"
+            #line 55 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\Ng1ControllerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(GetMethodName(method)));
             
             #line default
             #line hidden
             this.Write("(");
             
-            #line 58 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\Ng1ControllerTemplate.tt"
+            #line 55 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\Ng1ControllerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(BuildParams(method)));
             
             #line default
             #line hidden
             this.Write(")");
             
-            #line 58 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\Ng1ControllerTemplate.tt"
+            #line 55 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\Ng1ControllerTemplate.tt"
  if(method.ReturnType != null) Write($": ng.Promise<{method.TsReturnType}>"); 
             
             #line default
             #line hidden
             this.Write(" {\r\n        var url = this.urlBuilder.");
             
-            #line 59 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\Ng1ControllerTemplate.tt"
+            #line 56 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\Ng1ControllerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(GetMethodName(method)));
             
             #line default
             #line hidden
             this.Write("(");
             
-            #line 59 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\Ng1ControllerTemplate.tt"
+            #line 56 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\Ng1ControllerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(BuildCallParams(method)));
             
             #line default
             #line hidden
             this.Write(");\r\n        var defer = this.$q.defer();\r\n        this.$http.");
             
-            #line 61 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\Ng1ControllerTemplate.tt"
+            #line 58 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\Ng1ControllerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(method.HttpMethod.ToString().ToLower()));
             
             #line default
             #line hidden
             this.Write("(url");
             
-            #line 61 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\Ng1ControllerTemplate.tt"
+            #line 58 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\Ng1ControllerTemplate.tt"
  
 if (method.NeedsBody)
 {
     var postParam = method.Parameters.FirstOrDefault(p => p.ParameterType == ParameterType.Body);
-    if (postParam != null)
-		Write($", {postParam.Name}");
-	else 
-		Write(", ''");
+    Write(postParam != null ? $", {postParam.Name}" : ", ''");
 }
-		
+        
             
             #line default
             #line hidden
             this.Write(")\r\n            .success(function(data) {\r\n                return defer.resolve();" +
                     "\r\n        });\r\n        return defer.promise;\r\n    }\t\r\n");
             
-            #line 76 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\Ng1ControllerTemplate.tt"
+            #line 70 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\Ng1ControllerTemplate.tt"
  } 
             
             #line default
