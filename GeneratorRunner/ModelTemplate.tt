@@ -1,8 +1,6 @@
-﻿<#@ template language="C#" inherits="ModelTextWriter" #>
-<#@ assembly name="System.Core" #>
+﻿<#@ template language="C#" inherits="BaseTextTemplate" #>
 <#@ import namespace="System.Linq" #>
-<#@ import namespace="System.Text" #>
-<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="TypescriptModel.Poco" #>
 <# foreach (var usedClass in Model.UsedClasses) { #>
 import {<#= usedClass.Name #>} from "<#= usedClass.GetRelativePath(Model.Module) #><#= usedClass.FileName #>";
 <# } #>
@@ -14,3 +12,4 @@ export class <#= Model.TsName#> {
     <#= property.PropertyName #>: <#= property.ClassName #>;
 <# } #>
 }
+<#+ public ClassModel Model { get; set; } #>

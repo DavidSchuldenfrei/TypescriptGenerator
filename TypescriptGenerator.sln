@@ -26,15 +26,13 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 3
+		SccNumberOfProjects = 1
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = http://srvcredfi01:8080/tfs/development
 		SccProjectUniqueName0 = GeneratorRunner\\GeneratorRunner.csproj
 		SccProjectName0 = GeneratorRunner
+		SccAuxPath0 = http://srvcredfi01:8080/tfs/development
 		SccLocalPath0 = GeneratorRunner
-		SccProjectUniqueName1 = TypescriptModel\\TypescriptModel.csproj
-		SccProjectName1 = TypescriptModel
-		SccLocalPath1 = TypescriptModel
-		SccLocalPath2 = .
+		SccProvider0 = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 	EndGlobalSection
 EndGlobal

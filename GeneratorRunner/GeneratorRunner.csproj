@@ -55,13 +55,16 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="ControllerTextWriter.cs" />
+    <Compile Include="ControllerTemplate.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ControllerTemplate.tt</DependentUpon>
+    </Compile>
     <Compile Include="ModelTemplate.cs">
       <DependentUpon>ModelTemplate.tt</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="ModelTextWriter.cs" />
     <Compile Include="Ng1ControllerTemplate.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -92,6 +95,10 @@
     <Content Include="BaseTextTemplate.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>
       <LastGenOutput>BaseTextTemplate.cs</LastGenOutput>
+    </Content>
+    <Content Include="ControllerTemplate.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>ControllerTemplate.cs</LastGenOutput>
     </Content>
     <Content Include="ModelTemplate.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>
