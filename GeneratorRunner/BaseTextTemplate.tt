@@ -1,20 +1,35 @@
 ﻿<#@ template language="C#" #>
-<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Collections.Generic" #>
 <#@ import namespace="System.Linq" #>
-<#@ import namespace="System.Text" #>
-<#@ import namespace="System.Collections.Generic" #>\
-<#+
-		protected string GetPascalCase(string name)
-		{
-			if (string.IsNullOrEmpty(name))
-				return "";
-			return char.ToUpper(name[0]) + name.Substring(1, name.Length - 1);
-		}
+<#@ import namespace="TypescriptModel.Common" #>
 
-		protected static string GetCamelCase(string name)
+<#+
+	protected string GetPascalCase(string name)
+	{
+		if (string.IsNullOrEmpty(name))
+			return "";
+		return char.ToUpper(name[0]) + name.Substring(1, name.Length - 1);
+	}
+
+	protected string GetCamelCase(string name)
+    {
+        if (string.IsNullOrEmpty(name))
+            return "";
+        return char.ToLower(name[0]) + name.Substring(1, name.Length - 1);
+    }
+
+    protected void ImportUsedClasses(List<UsedClass> usedClasses, string currentModule)
+    {
+        if (usedClasses.Any())
         {
-            if (string.IsNullOrEmpty(name))
-                return "";
-            return char.ToLower(name[0]) + name.Substring(1, name.Length - 1);
-        }
+            foreach (var usedClass in usedClasses)
+            {
+#>import {<#= usedClass.Name #>} from "<#= usedClass.GetRelativePath(currentModule) #><#= usedClass.FileName #>";
+<#+
+			}
+#>
+ 
+<#+
+	    }
+	}
 #>

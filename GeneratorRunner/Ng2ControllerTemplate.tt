@@ -6,12 +6,7 @@ import {Http, Headers, RequestOptions} from '@angular/http';
 import 'rxjs/add/operator/map';
 import {Observable} from 'rxjs/Observable';
 
-<# foreach (var usedClass in Model.UsedClasses) { #>
-import {<#= usedClass.Name #>} from "<#= usedClass.GetRelativePath(Model.Module) #><#= usedClass.FileName #>";
-<# } #>
-<# if (Model.UsedClasses.Any()) {#>
-
-<# } #>
+<# ImportUsedClasses(Model.UsedClasses, Model.Module); #>
 declare var Global;
 
 @Injectable()

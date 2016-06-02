@@ -32,115 +32,75 @@ namespace GeneratorRunner
                     "m \'rxjs/Observable\';\r\n\r\n");
             
             #line 9 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\Ng2ControllerTemplate.tt"
- foreach (var usedClass in Model.UsedClasses) { 
-            
-            #line default
-            #line hidden
-            this.Write("import {");
-            
-            #line 10 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\Ng2ControllerTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(usedClass.Name));
-            
-            #line default
-            #line hidden
-            this.Write("} from \"");
-            
-            #line 10 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\Ng2ControllerTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(usedClass.GetRelativePath(Model.Module)));
-            
-            #line default
-            #line hidden
-            
-            #line 10 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\Ng2ControllerTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(usedClass.FileName));
-            
-            #line default
-            #line hidden
-            this.Write("\";\r\n");
-            
-            #line 11 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\Ng2ControllerTemplate.tt"
- } 
-            
-            #line default
-            #line hidden
-            
-            #line 12 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\Ng2ControllerTemplate.tt"
- if (Model.UsedClasses.Any()) {
-            
-            #line default
-            #line hidden
-            this.Write("\r\n");
-            
-            #line 14 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\Ng2ControllerTemplate.tt"
- } 
+ ImportUsedClasses(Model.UsedClasses, Model.Module); 
             
             #line default
             #line hidden
             this.Write("declare var Global;\r\n\r\n@Injectable()\r\nexport class ");
             
-            #line 18 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\Ng2ControllerTemplate.tt"
+            #line 13 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\Ng2ControllerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Model.Name.Replace("Controller", "Service")));
             
             #line default
             #line hidden
             this.Write(" {\r\n    constructor(private _http: Http) {\r\n    }\r\n");
             
-            #line 21 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\Ng2ControllerTemplate.tt"
+            #line 16 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\Ng2ControllerTemplate.tt"
  WriteUrlBuilder(); 
             
             #line default
             #line hidden
             
-            #line 22 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\Ng2ControllerTemplate.tt"
+            #line 17 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\Ng2ControllerTemplate.tt"
  foreach (var method in Model.Methods) {
             
             #line default
             #line hidden
             this.Write("    ");
             
-            #line 23 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\Ng2ControllerTemplate.tt"
+            #line 18 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\Ng2ControllerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(GetMethodName(method)));
             
             #line default
             #line hidden
             this.Write("(");
             
-            #line 23 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\Ng2ControllerTemplate.tt"
+            #line 18 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\Ng2ControllerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(BuildParams(method)));
             
             #line default
             #line hidden
             this.Write(")");
             
-            #line 23 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\Ng2ControllerTemplate.tt"
+            #line 18 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\Ng2ControllerTemplate.tt"
  if(method.ReturnType != null) Write($": Observable<{method.TsReturnType}>"); 
             
             #line default
             #line hidden
             this.Write(" {\r\n        var url = this.urlBuilder.");
             
-            #line 24 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\Ng2ControllerTemplate.tt"
+            #line 19 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\Ng2ControllerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(GetMethodName(method)));
             
             #line default
             #line hidden
             this.Write("(");
             
-            #line 24 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\Ng2ControllerTemplate.tt"
+            #line 19 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\Ng2ControllerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(BuildCallParams(method)));
             
             #line default
             #line hidden
             this.Write(");\r\n        return this._http.");
             
-            #line 25 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\Ng2ControllerTemplate.tt"
+            #line 20 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\Ng2ControllerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(method.HttpMethod.ToString().ToLower()));
             
             #line default
             #line hidden
             this.Write("(url, ");
             
-            #line 25 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\Ng2ControllerTemplate.tt"
+            #line 20 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\Ng2ControllerTemplate.tt"
  
 if (method.NeedsBody)
 {
@@ -153,21 +113,21 @@ if (method.NeedsBody)
             #line hidden
             this.Write("this._buildOptions())");
             
-            #line 31 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\Ng2ControllerTemplate.tt"
+            #line 26 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\Ng2ControllerTemplate.tt"
  if (method.ReturnType != null) {
             
             #line default
             #line hidden
             this.Write("\r\n            .map(res => res.json())");
             
-            #line 33 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\Ng2ControllerTemplate.tt"
+            #line 28 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\Ng2ControllerTemplate.tt"
  } 
             
             #line default
             #line hidden
             this.Write(";\r\n    }\r\n");
             
-            #line 35 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\Ng2ControllerTemplate.tt"
+            #line 30 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\Ng2ControllerTemplate.tt"
  } 
             
             #line default

@@ -1,12 +1,7 @@
 ﻿<#@ template language="C#" inherits="ControllerTemplate" #>
 <#@ import namespace="System.Linq" #>
 <#@ import namespace="TypescriptModel.Controller" #>
-<# foreach (var usedClass in Model.UsedClasses) { #>
-import {<#= usedClass.Name #>} from "<#= usedClass.GetRelativePath(Model.Module) #><#= usedClass.FileName #>";
-<# } #>
-<# if (Model.UsedClasses.Any()) {#>
-
-<# } #>
+<# ImportUsedClasses(Model.UsedClasses, Model.Module); #>
 declare var Global;
 
 export class <#= Model.Name.Replace("Controller", "Api")#> {

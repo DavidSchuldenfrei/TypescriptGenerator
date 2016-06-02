@@ -9,9 +9,9 @@
 // ------------------------------------------------------------------------------
 namespace GeneratorRunner
 {
-    using System.Linq;
-    using System.Text;
     using System.Collections.Generic;
+    using System.Linq;
+    using TypescriptModel.Common;
     using System;
     
     /// <summary>
@@ -28,25 +28,98 @@ namespace GeneratorRunner
         /// </summary>
         public virtual string TransformText()
         {
-            this.Write("\\\r\n");
+            this.Write("\r\n");
             return this.GenerationEnvironment.ToString();
         }
         
         #line 6 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\BaseTextTemplate.tt"
 
-		protected string GetPascalCase(string name)
-		{
-			if (string.IsNullOrEmpty(name))
-				return "";
-			return char.ToUpper(name[0]) + name.Substring(1, name.Length - 1);
-		}
+	protected string GetPascalCase(string name)
+	{
+		if (string.IsNullOrEmpty(name))
+			return "";
+		return char.ToUpper(name[0]) + name.Substring(1, name.Length - 1);
+	}
 
-		protected static string GetCamelCase(string name)
+	protected string GetCamelCase(string name)
+    {
+        if (string.IsNullOrEmpty(name))
+            return "";
+        return char.ToLower(name[0]) + name.Substring(1, name.Length - 1);
+    }
+
+    protected void ImportUsedClasses(List<UsedClass> usedClasses, string currentModule)
+    {
+        if (usedClasses.Any())
         {
-            if (string.IsNullOrEmpty(name))
-                return "";
-            return char.ToLower(name[0]) + name.Substring(1, name.Length - 1);
-        }
+            foreach (var usedClass in usedClasses)
+            {
+
+        
+        #line default
+        #line hidden
+        
+        #line 27 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\BaseTextTemplate.tt"
+this.Write("import {");
+
+        
+        #line default
+        #line hidden
+        
+        #line 27 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\BaseTextTemplate.tt"
+this.Write(this.ToStringHelper.ToStringWithCulture(usedClass.Name));
+
+        
+        #line default
+        #line hidden
+        
+        #line 27 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\BaseTextTemplate.tt"
+this.Write("} from \"");
+
+        
+        #line default
+        #line hidden
+        
+        #line 27 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\BaseTextTemplate.tt"
+this.Write(this.ToStringHelper.ToStringWithCulture(usedClass.GetRelativePath(currentModule)));
+
+        
+        #line default
+        #line hidden
+        
+        #line 27 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\BaseTextTemplate.tt"
+this.Write(this.ToStringHelper.ToStringWithCulture(usedClass.FileName));
+
+        
+        #line default
+        #line hidden
+        
+        #line 27 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\BaseTextTemplate.tt"
+this.Write("\";\r\n");
+
+        
+        #line default
+        #line hidden
+        
+        #line 28 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\BaseTextTemplate.tt"
+
+			}
+
+        
+        #line default
+        #line hidden
+        
+        #line 30 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\BaseTextTemplate.tt"
+this.Write(" \r\n");
+
+        
+        #line default
+        #line hidden
+        
+        #line 32 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\BaseTextTemplate.tt"
+
+	    }
+	}
 
         
         #line default

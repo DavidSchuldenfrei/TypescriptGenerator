@@ -9,7 +9,6 @@
 // ------------------------------------------------------------------------------
 namespace GeneratorRunner
 {
-    using System.Linq;
     using TypescriptModel.Poco;
     using System;
     
@@ -28,82 +27,42 @@ namespace GeneratorRunner
         public override string TransformText()
         {
             
-            #line 4 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\ModelTemplate.tt"
- foreach (var usedClass in Model.UsedClasses) { 
-            
-            #line default
-            #line hidden
-            this.Write("import {");
-            
-            #line 5 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\ModelTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(usedClass.Name));
-            
-            #line default
-            #line hidden
-            this.Write("} from \"");
-            
-            #line 5 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\ModelTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(usedClass.GetRelativePath(Model.Module)));
-            
-            #line default
-            #line hidden
-            
-            #line 5 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\ModelTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(usedClass.FileName));
-            
-            #line default
-            #line hidden
-            this.Write("\";\r\n");
-            
-            #line 6 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\ModelTemplate.tt"
- } 
-            
-            #line default
-            #line hidden
-            
-            #line 7 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\ModelTemplate.tt"
- if (Model.UsedClasses.Any()) {
-            
-            #line default
-            #line hidden
-            this.Write("\r\n");
-            
-            #line 9 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\ModelTemplate.tt"
- } 
+            #line 3 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\ModelTemplate.tt"
+ ImportUsedClasses(Model.UsedClasses, Model.Module); 
             
             #line default
             #line hidden
             this.Write("export class ");
             
-            #line 10 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\ModelTemplate.tt"
+            #line 4 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\ModelTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Model.TsName));
             
             #line default
             #line hidden
             this.Write(" {\r\n");
             
-            #line 11 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\ModelTemplate.tt"
+            #line 5 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\ModelTemplate.tt"
  foreach (var property in Model.Properties) { 
             
             #line default
             #line hidden
             this.Write("    ");
             
-            #line 12 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\ModelTemplate.tt"
+            #line 6 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\ModelTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(property.PropertyName));
             
             #line default
             #line hidden
             this.Write(": ");
             
-            #line 12 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\ModelTemplate.tt"
+            #line 6 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\ModelTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(property.ClassName));
             
             #line default
             #line hidden
             this.Write(";\r\n");
             
-            #line 13 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\ModelTemplate.tt"
+            #line 7 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\ModelTemplate.tt"
  } 
             
             #line default
@@ -112,7 +71,7 @@ namespace GeneratorRunner
             return this.GenerationEnvironment.ToString();
         }
         
-        #line 15 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\ModelTemplate.tt"
+        #line 9 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\ModelTemplate.tt"
  public ClassModel Model { get; set; } 
         
         #line default

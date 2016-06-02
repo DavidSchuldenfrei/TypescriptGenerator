@@ -1,12 +1,6 @@
 ﻿<#@ template language="C#" inherits="BaseTextTemplate" #>
-<#@ import namespace="System.Linq" #>
 <#@ import namespace="TypescriptModel.Poco" #>
-<# foreach (var usedClass in Model.UsedClasses) { #>
-import {<#= usedClass.Name #>} from "<#= usedClass.GetRelativePath(Model.Module) #><#= usedClass.FileName #>";
-<# } #>
-<# if (Model.UsedClasses.Any()) {#>
-
-<# } #>
+<# ImportUsedClasses(Model.UsedClasses, Model.Module); #>
 export class <#= Model.TsName#> {
 <# foreach (var property in Model.Properties) { #>
     <#= property.PropertyName #>: <#= property.ClassName #>;
