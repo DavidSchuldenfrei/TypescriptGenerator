@@ -234,10 +234,15 @@ this.Write(@",
             return result;
         },
         _encode(p: any) {
-            if (p instanceof Date)
-                return p.getYears() + '-' + p.getMonths() + '-' + p.getDays();
-            else
+            if (p instanceof Date) {
+				var month = p.getMonth() + 1;
+				month = month <= 9 ? '0' + month : month;
+				var day = p.getDate();
+				day = day <= 9 ? '0' + day : day;
+                return p.getFullYear() + '-' + month + '-' + day;
+			} else {
                 return encodeURIComponent(p);
+			}
         },
         _getUrl(baseUrl: string, params: string) {
             var result = this._domain + '/' + baseUrl
@@ -254,7 +259,7 @@ this.Write(@",
         #line default
         #line hidden
         
-        #line 106 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\ControllerTemplate.tt"
+        #line 111 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\ControllerTemplate.tt"
     
 	}
 
