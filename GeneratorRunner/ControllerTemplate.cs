@@ -38,18 +38,20 @@ namespace GeneratorRunner
 	protected string GetMethodName(MethodModel methodModel)
     {
         var name = methodModel.Name.ToLower();
-        if (name == "get")
-            return "getBy" + GetPascalCase(methodModel.Parameters.FirstOrDefault()?.Name);
-        if (name == "post")
-            return "post" + GetPascalCase(methodModel.Parameters.FirstOrDefault()?.Name);
-        if (name == "put")
+        switch (name)
         {
-            var parameter = methodModel.Parameters.FirstOrDefault();
-            if (methodModel.Parameters.Count > 1 && parameter?.Name.ToLower() == "id")
-                parameter = methodModel.Parameters[1];
-            return "put" + GetPascalCase(parameter?.Name);
+            case "get":
+                return "getBy" + GetPascalCase(methodModel.Parameters.FirstOrDefault()?.Name);
+            case "post":
+                return "post" + GetPascalCase(methodModel.Parameters.FirstOrDefault()?.Name);
+            case "put":
+                var parameter = methodModel.Parameters.FirstOrDefault();
+                if (methodModel.Parameters.Count > 1 && parameter?.Name.ToLower() == "id")
+                    parameter = methodModel.Parameters[1];
+                return "put" + GetPascalCase(parameter?.Name);
+			default:
+				return GetCamelCase(methodModel.Name);
         }
-        return GetCamelCase(methodModel.Name);
     }
 
     protected string BuildParams(MethodModel methodModel)
@@ -98,129 +100,129 @@ namespace GeneratorRunner
         #line default
         #line hidden
         
-        #line 66 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\ControllerTemplate.tt"
+        #line 68 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\ControllerTemplate.tt"
 this.Write("    urlBuilder = {\r\n");
 
         
         #line default
         #line hidden
         
-        #line 68 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\ControllerTemplate.tt"
+        #line 70 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\ControllerTemplate.tt"
  foreach (var method in Model.Methods) {
         
         #line default
         #line hidden
         
-        #line 68 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\ControllerTemplate.tt"
+        #line 70 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\ControllerTemplate.tt"
 this.Write("        ");
 
         
         #line default
         #line hidden
         
-        #line 69 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\ControllerTemplate.tt"
+        #line 71 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\ControllerTemplate.tt"
 this.Write(this.ToStringHelper.ToStringWithCulture(GetMethodName(method)));
 
         
         #line default
         #line hidden
         
-        #line 69 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\ControllerTemplate.tt"
+        #line 71 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\ControllerTemplate.tt"
 this.Write("(");
 
         
         #line default
         #line hidden
         
-        #line 69 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\ControllerTemplate.tt"
+        #line 71 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\ControllerTemplate.tt"
 this.Write(this.ToStringHelper.ToStringWithCulture(BuildParams(method)));
 
         
         #line default
         #line hidden
         
-        #line 69 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\ControllerTemplate.tt"
+        #line 71 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\ControllerTemplate.tt"
 this.Write(") {\r\n            var url = ");
 
         
         #line default
         #line hidden
         
-        #line 70 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\ControllerTemplate.tt"
+        #line 72 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\ControllerTemplate.tt"
 this.Write(this.ToStringHelper.ToStringWithCulture(FixRouteParameters(method.Route)));
 
         
         #line default
         #line hidden
         
-        #line 70 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\ControllerTemplate.tt"
+        #line 72 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\ControllerTemplate.tt"
 this.Write(";\r\n            var params = \'\';\r\n");
 
         
         #line default
         #line hidden
         
-        #line 72 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\ControllerTemplate.tt"
+        #line 74 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\ControllerTemplate.tt"
  foreach (var p in method.Parameters.Where(prm => prm.ParameterType == ParameterType.QueryString)) {
         
         #line default
         #line hidden
         
-        #line 72 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\ControllerTemplate.tt"
+        #line 74 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\ControllerTemplate.tt"
 this.Write("            params = params + ");
 
         
         #line default
         #line hidden
         
-        #line 73 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\ControllerTemplate.tt"
+        #line 75 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\ControllerTemplate.tt"
 this.Write(this.ToStringHelper.ToStringWithCulture(GetUrlAdjust(p)));
 
         
         #line default
         #line hidden
         
-        #line 73 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\ControllerTemplate.tt"
+        #line 75 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\ControllerTemplate.tt"
 this.Write("\r\n");
 
         
         #line default
         #line hidden
         
-        #line 74 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\ControllerTemplate.tt"
+        #line 76 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\ControllerTemplate.tt"
  } 
         
         #line default
         #line hidden
         
-        #line 74 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\ControllerTemplate.tt"
+        #line 76 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\ControllerTemplate.tt"
 this.Write("            return this._getUrl(url, params);\r\n        },\r\n");
 
         
         #line default
         #line hidden
         
-        #line 77 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\ControllerTemplate.tt"
+        #line 79 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\ControllerTemplate.tt"
  } 
         
         #line default
         #line hidden
         
-        #line 77 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\ControllerTemplate.tt"
+        #line 79 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\ControllerTemplate.tt"
 this.Write("\r\n        _domain: Global.host + Global.");
 
         
         #line default
         #line hidden
         
-        #line 79 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\ControllerTemplate.tt"
+        #line 81 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\ControllerTemplate.tt"
 this.Write(this.ToStringHelper.ToStringWithCulture(Model.Module));
 
         
         #line default
         #line hidden
         
-        #line 79 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\ControllerTemplate.tt"
+        #line 81 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\ControllerTemplate.tt"
 this.Write(@",
         _addParam(p: any) {
             var result = '';
@@ -259,7 +261,7 @@ this.Write(@",
         #line default
         #line hidden
         
-        #line 111 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\ControllerTemplate.tt"
+        #line 113 "C:\src\Credfi\Deploy\Tools\TypescriptGenerator\GeneratorRunner\ControllerTemplate.tt"
     
 	}
 

@@ -8,18 +8,20 @@
 	protected string GetMethodName(MethodModel methodModel)
     {
         var name = methodModel.Name.ToLower();
-        if (name == "get")
-            return "getBy" + GetPascalCase(methodModel.Parameters.FirstOrDefault()?.Name);
-        if (name == "post")
-            return "post" + GetPascalCase(methodModel.Parameters.FirstOrDefault()?.Name);
-        if (name == "put")
+        switch (name)
         {
-            var parameter = methodModel.Parameters.FirstOrDefault();
-            if (methodModel.Parameters.Count > 1 && parameter?.Name.ToLower() == "id")
-                parameter = methodModel.Parameters[1];
-            return "put" + GetPascalCase(parameter?.Name);
+            case "get":
+                return "getBy" + GetPascalCase(methodModel.Parameters.FirstOrDefault()?.Name);
+            case "post":
+                return "post" + GetPascalCase(methodModel.Parameters.FirstOrDefault()?.Name);
+            case "put":
+                var parameter = methodModel.Parameters.FirstOrDefault();
+                if (methodModel.Parameters.Count > 1 && parameter?.Name.ToLower() == "id")
+                    parameter = methodModel.Parameters[1];
+                return "put" + GetPascalCase(parameter?.Name);
+			default:
+				return GetCamelCase(methodModel.Name);
         }
-        return GetCamelCase(methodModel.Name);
     }
 
     protected string BuildParams(MethodModel methodModel)
