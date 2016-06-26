@@ -43,6 +43,12 @@ namespace TypescriptModel.Common
                 var sb = new StringBuilder();
                 var genericTypeDefinition = type.GetGenericTypeDefinition();
                 var genericTypeDefinitionName = RemoveGenericMarker(genericTypeDefinition);
+                if (type.BaseType != null && type.BaseType != typeof(object) && GetTsTypeName(type.BaseType, knownTypesModule, forceSuccess) == genericTypeDefinitionName)
+                {
+                    genericTypeDefinitionName = KeepGenericMarker(genericTypeDefinition);
+                    //Typescript does Not Support code like:
+                    // class Classname<T> extends Classname
+                }
                 sb.Append(genericTypeDefinitionName).Append("<");
                 foreach (var genericTypeArgument in type.GetGenericArguments())
                 {
@@ -63,6 +69,11 @@ namespace TypescriptModel.Common
             if (genPos > 0)
                 name = name.Substring(0, genPos);
             return name;
+        }
+
+        public static string KeepGenericMarker(Type type)
+        {
+            return type.Name.Replace("`", "");
         }
 
         public static string GetFullClassName(Type type)
