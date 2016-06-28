@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Web.Http;
 using TypescriptModel.Common;
 
 namespace TypescriptModel.Controller
@@ -16,6 +17,9 @@ namespace TypescriptModel.Controller
             if (controllerName.EndsWith("Controller"))
                 controllerName = controllerName.Substring(0, controllerName.Length - 10);
             var controllerRoutePrefix = $"api/{controllerName}";
+            var methodAttrib = type.GetCustomAttributes<RoutePrefixAttribute>().FirstOrDefault();
+            if (methodAttrib != null)
+                controllerRoutePrefix = methodAttrib.Prefix;
 
             Methods = type
                 .GetMethods(BindingFlags.Instance | BindingFlags.Public | BindingFlags.DeclaredOnly)
