@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using TypescriptModel;
-using TypescriptModel.Common;
 
 namespace GeneratorRunner
 {

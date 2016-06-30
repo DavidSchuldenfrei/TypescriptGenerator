@@ -29,6 +29,7 @@ namespace GeneratorRunner
             var options = JsonConvert.DeserializeObject<Options>(File.ReadAllText(fileName));
             foreach (var assemblyModule in options.Assemblies)
             {
+                assemblyModule.Init();
                 var moduleDir = GetFolder(options.OutFolder, assemblyModule.Module);
                 if (Directory.Exists(moduleDir))
                 {

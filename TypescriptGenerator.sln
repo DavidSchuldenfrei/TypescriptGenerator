@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TypescriptModel", "Typescri
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeneratorRunner", "GeneratorRunner\GeneratorRunner.csproj", "{C0DA861D-BD39-4AAE-BCFE-54EE7345AA4D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utils", "Utils\Utils.csproj", "{BA1C988F-87B3-403E-909C-92654DE21559}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,18 +23,12 @@ Global
 		{C0DA861D-BD39-4AAE-BCFE-54EE7345AA4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C0DA861D-BD39-4AAE-BCFE-54EE7345AA4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C0DA861D-BD39-4AAE-BCFE-54EE7345AA4D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BA1C988F-87B3-403E-909C-92654DE21559}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA1C988F-87B3-403E-909C-92654DE21559}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA1C988F-87B3-403E-909C-92654DE21559}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA1C988F-87B3-403E-909C-92654DE21559}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 1
-		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccTeamFoundationServer = http://srvcredfi01:8080/tfs/development
-		SccProjectUniqueName0 = GeneratorRunner\\GeneratorRunner.csproj
-		SccProjectName0 = GeneratorRunner
-		SccAuxPath0 = http://srvcredfi01:8080/tfs/development
-		SccLocalPath0 = GeneratorRunner
-		SccProvider0 = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 	EndGlobalSection
 EndGlobal

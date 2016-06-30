@@ -13,15 +13,12 @@
     {
       "path": "CorporateStructure\\Application\\Code\\API\\bin\\CrediFi.CorporateStructure.Api.dll",
       "module": "corporateStructure.services",
-      "skipNamespaces": [
-        "CrediFi.CorporateStructure.Api.Areas.HelpPage",
-        "CrediFi.CorporateStructure.Api.Areas.HelpPage.Controllers",
-        "CrediFi.CorporateStructure.Api.Areas.HelpPage.Models",
-        "CrediFi.CorporateStructure.Api.Areas.HelpPage.ModelDescriptions",
-        "CrediFi.CorporateStructure.Api.Areas.HelpPage.SampleGeneration",
-        "CrediFi.CorporateStructure.Api"
-      ],
-      "skipTypes": [ "CrediFi.CorporateStructure.Api.Controllers.HomeController" ]
+      "Patterns": [
+        "-*",
+        "*.Controllers.*",
+        "-*.HomeController",
+        "-*.HelpController"
+      ]
     },
     {
       "path": "Shared\\ApiInterfaces\\libs\\CrediFi.Debt.Contracts.dll",
@@ -30,15 +27,12 @@
     {
       "path": "Debt\\Application\\Code\\API\\bin\\CrediFi.Debt.Api.dll",
       "module": "debt.services",
-      "skipNamespaces": [
-        "CrediFi.Debt.Api.Areas.HelpPage",
-        "CrediFi.Debt.Api.Areas.HelpPage.Controllers",
-        "CrediFi.Debt.Api.Areas.HelpPage.Models",
-        "CrediFi.Debt.Api.Areas.HelpPage.ModelDescriptions",
-        "CrediFi.Debt.Api.Areas.HelpPage.SampleGeneration",
-        "CrediFi.Debt.Api"
-      ],
-      "skipTypes": [ "CrediFi.Debt.Api.Controllers.HomeController" ]
+      "Patterns": [
+        "-*",
+        "*.Controllers.*",
+        "-*.HomeController",
+        "-*.HelpController"
+      ]
     },
     {
       "path": "Shared\\ApiInterfaces\\libs\\CrediFi.PropertyRisk.Contracts.dll",
@@ -47,15 +41,12 @@
     {
       "path": "PropertyRisk\\Application\\Code\\API\\bin\\CrediFi.PropertyRisk.Api.dll",
       "module": "propertyRisk.services",
-      "skipNamespaces": [
-        "CrediFi.PropertyRisk.Api.Areas.HelpPage",
-        "CrediFi.PropertyRisk.Api.Areas.HelpPage.Controllers",
-        "CrediFi.PropertyRisk.Api.Areas.HelpPage.Models",
-        "CrediFi.PropertyRisk.Api.Areas.HelpPage.ModelDescriptions",
-        "CrediFi.PropertyRisk.Api.Areas.HelpPage.SampleGeneration",
-        "CrediFi.PropertyRisk.Api"
-      ],
-      "skipTypes": [ "CrediFi.PropertyRisk.Api.Controllers.HomeController" ]
+      "Patterns": [
+        "-*",
+        "*.Controllers.*",
+        "-*.HomeController",
+        "-*.HelpController"
+      ]
     },
     {
       "path": "Shared\\ApiInterfaces\\libs\\CrediFi.UISupport.Contracts.dll",
@@ -64,28 +55,23 @@
     {
       "path": "UISupport\\Application\\Code\\Api\\bin\\CrediFi.UISupport.Api.dll",
       "module": "uiSupport.services",
-      "skipNamespaces": [
-        "CrediFi.UISupport.Api.Areas.HelpPage",
-        "CrediFi.UISupport.Api.Areas.HelpPage.Controllers",
-        "CrediFi.UISupport.Api.Areas.HelpPage.Models",
-        "CrediFi.UISupport.Api.Areas.HelpPage.ModelDescriptions",
-        "CrediFi.UISupport.Api.Areas.HelpPage.SampleGeneration",
-        "CrediFi.UISupport.Api"
-      ],
-      "skipTypes": [ "CrediFi.UISupport.Api.Controllers.HomeController" ]
+      "Patterns": [
+        "-*",
+        "*.Controllers.*",
+        "-*.HomeController",
+        "-*.HelpController",
+        "CrediFi.UISupport.Api.Models.*"
+      ]
     },
     {
       "path": "DocumentRenderer\\Application\\Code\\Api\\bin\\CrediFi.DocumentRenderer.Api.dll",
       "module": "documentRenderer.services",
-      "skipNamespaces": [
-        "CrediFi.DocumentRenderer.Api.Areas.HelpPage",
-        "CrediFi.DocumentRenderer.Api.Areas.HelpPage.Controllers",
-        "CrediFi.DocumentRenderer.Api.Areas.HelpPage.Models",
-        "CrediFi.DocumentRenderer.Api.Areas.HelpPage.ModelDescriptions",
-        "CrediFi.DocumentRenderer.Api.Areas.HelpPage.SampleGeneration",
-        "CrediFi.DocumentRenderer.Api"
-      ],
-      "skipTypes": [ "CrediFi.DocumentRenderer.Api.Controllers.HomeController" ]
+      "Patterns": [
+        "-*",
+        "*.Controllers.*",
+        "-*.HomeController",
+        "-*.HelpController"
+      ]
     },
     {
       "path": "Shared\\ApiInterfaces\\libs\\CrediFi.Transactions.Contracts.dll",
@@ -94,15 +80,12 @@
     {
       "path": "Transactions\\Server\\Core\\Application\\Code\\Api\\bin\\CrediFi.Transactions.Api.dll",
       "module": "transactions.core.services",
-      "skipNamespaces": [
-        "CrediFi.Transactions.Api.Areas.HelpPage",
-        "CrediFi.Transactions.Api.Areas.HelpPage.Controllers",
-        "CrediFi.Transactions.Api.Areas.HelpPage.Models",
-        "CrediFi.Transactions.Api.Areas.HelpPage.ModelDescriptions",
-        "CrediFi.Transactions.Api.Areas.HelpPage.SampleGeneration",
-        "CrediFi.Transactions.Api"
-      ],
-      "skipTypes": [ "CrediFi.Transactions.Api.Controllers.HomeController" ]
+      "Patterns": [
+        "-*",
+        "*.Controllers.*",
+        "-*.HomeController",
+        "-*.HelpController"
+      ]
     },
     {
       "path": "Shared\\ApiInterfaces\\libs\\CrediFi.TransactionsSupport.Contracts.dll",
@@ -111,15 +94,12 @@
     {
       "path": "Transactions\\Server\\Query\\Application\\Code\\Api\\bin\\CrediFi.TransactionsSupport.Api.dll",
       "module": "transactions.support.services",
-      "skipNamespaces": [
-        "CrediFi.TransactionsSupport.Api.Areas.HelpPage",
-        "CrediFi.TransactionsSupport.Api.Areas.HelpPage.Controllers",
-        "CrediFi.TransactionsSupport.Api.Areas.HelpPage.Models",
-        "CrediFi.TransactionsSupport.Api.Areas.HelpPage.ModelDescriptions",
-        "CrediFi.TransactionsSupport.Api.Areas.HelpPage.SampleGeneration",
-        "CrediFi.TransactionsSupport.Api"
-      ],
-      "skipTypes": [ "CrediFi.TransactionsSupport.Api.Controllers.HomeController" ]
+      "Patterns": [
+        "-*",
+        "*.Controllers.*",
+        "-*.HomeController",
+        "-*.HelpController"
+      ]
     }
   ]
 }

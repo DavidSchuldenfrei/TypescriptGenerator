@@ -4,17 +4,13 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{9F5A066F-FD76-4CFC-9464-D886CDD46DF2}</ProjectGuid>
+    <ProjectGuid>{BA1C988F-87B3-403E-909C-92654DE21559}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TypescriptModel</RootNamespace>
-    <AssemblyName>TypescriptModel</AssemblyName>
+    <RootNamespace>Utils</RootNamespace>
+    <AssemblyName>Utils</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <SccProjectName>SAK</SccProjectName>
-    <SccLocalPath>SAK</SccLocalPath>
-    <SccAuxPath>SAK</SccAuxPath>
-    <SccProvider>SAK</SccProvider>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -36,10 +32,6 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
-    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -48,25 +40,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Builder.cs" />
-    <Compile Include="AssemblyModule.cs" />
-    <Compile Include="Results.cs" />
-    <Compile Include="Common\TypeUtils.cs" />
-    <Compile Include="Common\UsedClass.cs" />
-    <Compile Include="Controller\ControllerModel.cs" />
-    <Compile Include="Controller\HttpMethod.cs" />
-    <Compile Include="Controller\MethodModel.cs" />
-    <Compile Include="Controller\ParameterModel.cs" />
-    <Compile Include="Controller\ParameterType.cs" />
-    <Compile Include="Poco\ClassModel.cs" />
-    <Compile Include="Poco\ModelProperty.cs" />
+    <Compile Include="Action.cs" />
+    <Compile Include="RegexAction.cs" />
+    <Compile Include="RegexUtils.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Utils\Utils.csproj">
-      <Project>{BA1C988F-87B3-403E-909C-92654DE21559}</Project>
-      <Name>Utils</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
