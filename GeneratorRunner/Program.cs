@@ -73,7 +73,7 @@ namespace GeneratorRunner
                 var folder = GetFolder(options.OutFolder + "/Angular2", controllerModel.Module);
                 Directory.CreateDirectory(folder);
                 var template = new Ng2ControllerTemplate { Model = controllerModel };
-                var outFile = Path.Combine(folder, controllerModel.Name.Replace("Controller", "Service") + ".ts");
+                var outFile = Path.Combine(folder, controllerModel.Name.Replace("Controller", "") + ".service.ts");
                 File.WriteAllText(outFile, template.TransformText());
             }
         }

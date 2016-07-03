@@ -15,8 +15,6 @@ namespace Utils
         public static RegexAction ToRegexAction(this string pattern)
         {
             var action = Action.Include;
-            if (pattern.StartsWith("+"))
-                pattern = pattern.Substring(1);
             if (pattern.StartsWith("-"))
             {
                 pattern = pattern.Substring(1);
